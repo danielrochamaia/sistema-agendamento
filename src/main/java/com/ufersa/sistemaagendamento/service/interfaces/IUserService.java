@@ -15,4 +15,6 @@ public interface IUserService {
     Optional<User> GetUserByLoginData(String email, String senha);
 
     Boolean IsRegisteredUser(String email);
+
+    String UpdateUser(UserRequest userRequest);
 }

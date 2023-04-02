@@ -18,10 +18,10 @@ public class User {
     @Column(nullable = false)
     private String senha;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String telefone;
 
     @Column(nullable = false)
