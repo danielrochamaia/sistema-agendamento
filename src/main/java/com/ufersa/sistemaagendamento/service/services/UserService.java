@@ -61,4 +61,20 @@ public class UserService implements IUserService {
         }
         return false;
     }
+
+    @Override
+    public String UpdateUser(UserRequest userRequest) {
+        var registeredUser = GetUserByLoginData(userRequest.email, userRequest.senha);
+        if(registeredUser.isEmpty()){
+            return "Usuário não cadastrado";
+        }
+
+        registeredUser.get().setNome(userRequest.nome);
+        registeredUser.get().setTelefone(userRequest.telefone);
+        registeredUser.get().setSenha(userRequest.senha);
+
+        userRepository.save(registeredUser.get());
+
+        return "Feito!";
+    }
 }
