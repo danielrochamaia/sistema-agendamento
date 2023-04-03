@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 
 @RestController
@@ -44,5 +45,17 @@ public class ScheduleController {
     public ResponseEntity<String> AddSchedule(@RequestBody ScheduleRequest scheduleRequest) {
         var response = scheduleService.AddSchedule(scheduleRequest);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/filaespera")
+    public ResponseEntity<String> AddIntoWaitingQueue(@RequestBody UserRequest userRequest) {
+        var response = scheduleService.AddIntoWaitingQueue(userRequest.email, userRequest.senha);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/filaespera")
+    public ResponseEntity<User> GetFirst() {
+        var response = scheduleService.GetFirst();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
